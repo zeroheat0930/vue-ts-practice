@@ -1,24 +1,30 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// 1. 단순한 변수는 데이터가 변해도 화면이 안 바뀝니다.
-let count1 = 0 
+// TypeScript에게 이 변수는 'string(문자열)'이라고 알려줍니다.
+const message = ref<string>('안녕하세요!')
 
-// 2. ref를 사용해야 Vue가 "어! 데이터 변했네? 화면 다시 그려야지!"라고 눈치를 챕니다.
-// <number>는 TypeScript에게 이 값은 '숫자'라고 명시하는 거예요.
-const count2 = ref<number>(0)
-
-const increase = () => {
-  count1++ // 콘솔에는 찍히지만 화면은 그대로입니다.
-  count2.value++ // .value를 수정하면 화면이 자동으로 바뀝니다!
-  console.log('일반 변수:', count1, '반응형 ref:', count2.value)
+// 입력창을 비워버리는 함수
+const clearMessage = () => {
+  message.value = ''
 }
 </script>
 
 <template>
-  <div>
-    <p>일반 변수 (안 변함): {{ count1 }}</p>
-    <p>반응형 변수 (변함): {{ count2 }}</p>
-    <button @click="increase">1씩 증가</button>
+  <div class="practice">
+    <h2>2교시: v-model 연습</h2>
+    
+    <input v-model="message" placeholder="여기에 아무거나 입력해 보세요" />
+    
+    <p><strong>실시간 입력 내용:</strong> {{ message }}</p>
+    
+    <button @click="clearMessage">내용 지우기</button>
   </div>
 </template>
+
+<style scoped>
+.practice { padding: 20px; }
+input { padding: 10px; width: 250px; font-size: 16px; }
+p { margin-top: 15px; font-size: 18px; color: #42b883; }
+button { margin-top: 10px; padding: 5px 10px; }
+</style>
