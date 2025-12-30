@@ -10,6 +10,7 @@ interface Todo {
 }
 
 // 2. 반응형 상태(State) 관리
+커밋
 // ref<Todo[]>는 "이 변수는 Todo 객체들이 담긴 배열이다"라고 선언하는 것입니다.
 const todos = ref<Todo[]>([
   { id: 1, text: 'TypeScript 환경 설정 완료하기', isDone: true },
